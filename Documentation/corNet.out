@@ -1,0 +1,47 @@
+\BOOKMARK [0][-]{section*.1}{List of Figures}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Dynamic Neural Array Architecture}{}% 2
+\BOOKMARK [1][-]{section.1.1}{Properties}{chapter.1}% 3
+\BOOKMARK [2][-]{subsection.1.1.1}{id}{section.1.1}% 4
+\BOOKMARK [2][-]{subsection.1.1.2}{t}{section.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.1.3}{u}{section.1.1}% 6
+\BOOKMARK [2][-]{subsection.1.1.4}{v}{section.1.1}% 7
+\BOOKMARK [2][-]{subsection.1.1.5}{a}{section.1.1}% 8
+\BOOKMARK [2][-]{subsection.1.1.6}{aFr}{section.1.1}% 9
+\BOOKMARK [2][-]{subsection.1.1.7}{fu}{section.1.1}% 10
+\BOOKMARK [2][-]{subsection.1.1.8}{h}{section.1.1}% 11
+\BOOKMARK [2][-]{subsection.1.1.9}{hV}{section.1.1}% 12
+\BOOKMARK [2][-]{subsection.1.1.10}{hA}{section.1.1}% 13
+\BOOKMARK [2][-]{subsection.1.1.11}{tau}{section.1.1}% 14
+\BOOKMARK [2][-]{subsection.1.1.12}{tauV}{section.1.1}% 15
+\BOOKMARK [2][-]{subsection.1.1.13}{tauA}{section.1.1}% 16
+\BOOKMARK [2][-]{subsection.1.1.14}{tauAFr}{section.1.1}% 17
+\BOOKMARK [2][-]{subsection.1.1.15}{vCoefficient}{section.1.1}% 18
+\BOOKMARK [2][-]{subsection.1.1.16}{aCoefficient}{section.1.1}% 19
+\BOOKMARK [2][-]{subsection.1.1.17}{aFrCoefficient}{section.1.1}% 20
+\BOOKMARK [2][-]{subsection.1.1.18}{noiseCoefficient}{section.1.1}% 21
+\BOOKMARK [2][-]{subsection.1.1.19}{interaction}{section.1.1}% 22
+\BOOKMARK [2][-]{subsection.1.1.20}{input}{section.1.1}% 23
+\BOOKMARK [2][-]{subsection.1.1.21}{changeDetectionBypassInput}{section.1.1}% 24
+\BOOKMARK [1][-]{section.1.2}{Methods}{chapter.1}% 25
+\BOOKMARK [2][-]{subsection.1.2.1}{Constructor}{section.1.2}% 26
+\BOOKMARK [2][-]{subsection.1.2.2}{step}{section.1.2}% 27
+\BOOKMARK [2][-]{subsection.1.2.3}{init}{section.1.2}% 28
+\BOOKMARK [2][-]{subsection.1.2.4}{output}{section.1.2}% 29
+\BOOKMARK [2][-]{subsection.1.2.5}{addInput}{section.1.2}% 30
+\BOOKMARK [2][-]{subsection.1.2.6}{addBypassInput}{section.1.2}% 31
+\BOOKMARK [2][-]{subsection.1.2.7}{sum}{section.1.2}% 32
+\BOOKMARK [2][-]{subsection.1.2.8}{plot}{section.1.2}% 33
+\BOOKMARK [2][-]{subsection.1.2.9}{map}{section.1.2}% 34
+\BOOKMARK [2][-]{subsection.1.2.10}{Generative Methods}{section.1.2}% 35
+\BOOKMARK [2][-]{subsection.1.2.11}{diagProject}{section.1.2}% 36
+\BOOKMARK [1][-]{section.1.3}{Modification Methods}{chapter.1}% 37
+\BOOKMARK [2][-]{subsection.1.3.1}{coInhibit}{section.1.3}% 38
+\BOOKMARK [2][-]{subsection.1.3.2}{wta}{section.1.3}% 39
+\BOOKMARK [2][-]{subsection.1.3.3}{diagProjectBack}{section.1.3}% 40
+\BOOKMARK [2][-]{subsection.1.3.4}{setDecreasingRestingLevels}{section.1.3}% 41
+\BOOKMARK [1][-]{section.1.4}{Typical Workflow}{chapter.1}% 42
+\BOOKMARK [2][-]{subsection.1.4.1}{Constructing neural elements and arrays}{section.1.4}% 43
+\BOOKMARK [2][-]{subsection.1.4.2}{Setting Properties}{section.1.4}% 44
+\BOOKMARK [2][-]{subsection.1.4.3}{Defining connectivity}{section.1.4}% 45
+\BOOKMARK [2][-]{subsection.1.4.4}{Running a simulation}{section.1.4}% 46
+\BOOKMARK [2][-]{subsection.1.4.5}{Visualizing outputs}{section.1.4}% 47

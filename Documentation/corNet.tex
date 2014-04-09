@@ -1,0 +1,228 @@
+\documentclass[phd, 12pt, doublespace, online]{fauthesis}
+%\usepackage{tocbibind}
+
+% The "print" class option overrides any special formatting of links by the hyperref package.
+% Use the "online" class option instead to color links and/or put boxes around them.
+
+
+%% The hyperref package embeds document data in PDF files, and automatically creates PDF bookmarks for chapters and sections.  The following lines activate it and set some of its options.
+%
+% NOTE: The "print" class option above will override the options used here to color the links.  Change the class option to "online" to avoid this.
+%%
+\usepackage{hyperref}
+
+\hypersetup{
+	pdftitle={fauthesis Sample File},						% title
+	pdfauthor={C. Beetle},								% author
+	pdfsubject={Sample file for the fauthesis document class.},	% subject of the document
+	pdfnewwindow=true,								% links in new window
+	pdfkeywords={FAU, thesis, dissertation, guide, 
+					TeX, LaTeX, class, style, format},		% list of keywords
+	colorlinks=true,										% false: boxed links; true: colored links
+	linkcolor=[rgb]{0.7,0.0,0.0},							% color of internal links
+	citecolor=[rgb]{0.0,0.4,0.4},							% color of links to bibliography
+	filecolor=[rgb]{0.0,0.0,0.8},							% color of file links
+	urlcolor=[rgb]{0.0,0.0,0.8}								% color of external links
+}
+
+
+\title{Discrete Dynamical Neural Architecture \\DDNA}
+\author{Joseph Norman}
+\gender{M}
+\graduation{May}{2012}
+\department{Department of Physics}
+\college{Charles E.~Schmidt College of Science}
+\chair{Warner A.~Miller}
+\dean{Gary W.~Perry}
+
+\advisor{Christopher Beetle}
+\supervisor{Sukanya Chakrabarti}
+\supervisor{Andy Lau}
+\supervisor{Theodora Leventouri}
+\supervisor{Charles E.~Roberts}
+
+
+\signaturepush{-3.2}
+% 	Increase or decrease the vertical gap between committee and administration signatures
+
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+\makecopyright
+\makesignature
+
+
+
+\tableofcontents
+\nolistoftables					% Or \listoftables if there are tables
+\listoffigures					% Or \nolistoffigures if there are no figures
+
+\mainmatter
+
+
+\chapter{Dynamic Neural Array Architecture}
+
+The Dynamic Neural Array Architecture (DNAA) is an extensible object-oriented Matlab toolbox designed for rapid prototyping and testing of dynamical neural architectures. DNAA is designed with a focus on ease of implementation, flexibility, and robustness. Models of sufficient size or complexity can be constructed in a task-specific manner to cut down on computational overhead after prototyping with DNAA, if necessary. 
+
+
+The {\tt Neuron} class file allows one to make both individual and arrays of neural elements whose properties and parameters can be specified. In general, neurons can be described by an equation of the form
+
+\bigskip
+\noindent $ \tau \dot{u} = -u + h + input $
+
+\bigskip
+\noindent where $u$ is the activation state of the neuron, $h$ is the resting level, and $input$ may represent synaptic inputs from other neurons, direct `stimulus' inputs, or terms associated with other neural functions (e.g. adaptation). 
+
+Enabling certain properties of neurons (e.g., enabling change-detection) might lead to additional equations for each neural element. This will be detailed in the relevant sections of the documentation. By default, newly constructed neurons are of the `simple' class described by the equation above. 
+
+\section{Properties}
+
+\subsection{id}
+
+Each neural element has an `id' that can be assigned to it in order to label it. This is useful because the Neuron is a handle class, meaning that multiple handles can point to the same Neuron object. Giving a Neuron object a unique `id' can minimize confusion stemming from this. Note: there is nothing preventing multiple neurons from possessing the same id, so one must take care in ensuring an id is a unique identifier. 
+
+\subsection{t}
+
+The property `t' defines the current clock time of a given neural element. When a neuron is initialized (see init() method) `t' is set to 1. When a time step is taken in the simulation (i.e. when the step() method is called) the value of t is increased by 1 (i.e. t(n+1) = t(n) + 1). The value is always a single integer. 
+
+\subsection{u}
+
+The activation state of each neural element is represented by the variable $u$. The property `u' is a vector that represents the time-series of $u$ for each neural element. 
+
+\subsection{v}
+\subsection{a}
+\subsection{aFr}
+\subsection{fu}
+\subsection{h}
+
+The property {\tt h} sets the resting level of a neural element. 
+
+\subsection{hV}
+\subsection{hA}
+
+\subsection{tau}
+
+The property `tau' sets the time constant for the dynamical evolution of a neural element. 
+
+\subsection{tauV}
+\subsection{tauA}
+\subsection{tauAFr}
+
+\subsection{vCoefficient}
+\subsection{aCoefficient}
+\subsection{aFrCoefficient}
+\subsection{noiseCoefficient}
+\subsection{interaction}
+\subsection{input}
+
+The input property represents all the external inputs that a neuron is receiving. The input array is defined as a $1 \times n$ cell array with $n$ synaptic inputs. Each synaptic input is itself a cell array that contains one or more input values that are to be multiplied. Individual inputs can be scalar, time-series (i.e. 1-D vector), or the handles of neural elements. 
+
+\subsection{changeDetectionBypassInput}
+
+\section{Methods}
+
+\subsection{Constructor}
+
+The constructor method is called as {\tt Neuron([size])} where {\tt [size]} can be empty (creates a single neural element), scalar (creates a row array of neural elements size long), or a vector of $n$ elements that defines the size of each of the $n$ dimensions in a multi-dimensional neural array. 
+
+Typically, newly constructed neural arrays should be assigned a handle in order to refer to the object(s). For example {\tt x = Neuron()} assigns the handle {\tt x} to a single neural element. 
+
+Example usage:
+
+{\tt x = Neuron(4)}
+
+
+
+\subsection{step}
+\subsection{init}
+\subsection{output}
+\subsection{addInput}
+\subsection{addBypassInput}
+\subsection{sum}
+\subsection{plot}
+\subsection{map}
+
+
+\subsection{Generative Methods}
+
+Generative methods are those that result in the construction of neural elements or arrays. This can be useful when one neuron space is defined in terms of one or more others. For instance, one can generate a two dimensional `neural product space' through the combination of two one-dimensional neural arrays. 
+
+\subsubsection{neuralProduct}
+\subsection{diagProject}
+
+\section{Modification Methods}
+
+Modification methods set property values among extant neural arrays. This can be useful, for instance, when defining connectivity within an array or connecting arrays of neurons in a specific way. 
+
+\subsection{coInhibit}
+\subsection{wta}
+\subsection{diagProjectBack}
+\subsection{setDecreasingRestingLevels}
+
+\section{Typical Workflow}
+
+\subsection{Constructing neural elements and arrays}
+
+The first step in a typical workflow is to define a set of neural elements and/or arrays that will serve as the basis of the model. Some methods result in the construction of neural arrays, if these are used it is also good practice to call these near the top of a script. 
+
+\subsection{Setting Properties}
+Setting properties can be done directly using dot notation or using specific {\tt set} methods. Using {\tt set} methods has the advantage that a single property can be modified for an entire neural array, while using dot notation must be done a single neural element at a time. 
+
+For example, if a handle points to an individual neural element, as would be the case if one called the constructor method with no arguments, the resting level of the neuron can be set with dot-notation that references only the handle (without index). The following commands demonstrates this:
+
+
+\bigskip
+\noindent {\tt x = Neuron()
+
+\noindent x.h = -20}
+
+
+\bigskip
+\noindent In this example, a single neural element is constructed and the handle {\tt x} is assigned to it. The resting level is then changed from its default value (-10) to -20. 
+
+If a handle points to an array of neural elements, using dot notation in this way will result in an error:
+
+\bigskip
+\noindent {\tt x = Neuron(4)
+
+\noindent x.h = -20
+
+\noindent Incorrect number of right hand side elements in dot name assignment.}
+
+\bigskip
+If one wants to set a property of a single neural element on an array, simply refer to its index when using dot notation. For example,
+
+\bigskip
+\noindent {\tt x(2).h = -20}
+
+\bigskip
+\noindent sets the resting level of second neuron in the array to -20. 
+
+\bigskip
+If one wishes to set a property for an entire array, a {\tt set} method must be called. For instance, to create a neural array consisting of four neural elements and set all their resting levels to -30, one could write the command
+
+\bigskip
+\noindent {\tt x = Neuron(4)
+
+\noindent setH(x, -30)}
+
+\bigskip
+\noindent where the {\tt setH} method takes two arguments: the neural array of interest and the value to be assigned. In this example, the four neural elements on the neural array have all of their resting levels set to -30. The list of {\tt set} methods can be found in the methods section. 
+
+
+\subsection{Defining connectivity}
+
+After all neural elements are constructed and their properties set, one can define the connectivity among the elements. This can be done on an individual element-to-element basis or through routines that apply some connectivity scheme to a set of elements. 
+
+Defining connectivity among individual elements can be done with the {\tt addInput} method. Other connectivity routines included in the toolbox can be found in Section X on `Modification methods'.
+
+\subsection{Running a simulation}
+
+\subsection{Visualizing outputs}
+
+
+
+\end{document}  
