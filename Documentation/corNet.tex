@@ -67,6 +67,9 @@
 
 The Dynamic Neural Array Architecture (DNAA) is an extensible object-oriented Matlab toolbox designed for rapid prototyping and testing of dynamical neural architectures. DNAA is designed with a focus on ease of implementation, flexibility, and robustness. Models of sufficient size or complexity can be constructed in a task-specific manner to cut down on computational overhead after prototyping with DNAA, if necessary. 
 
+DNAA is an open-source project. All of the code and documentation can be located and downloaded at {\tt http://www.github.com/normonics/DNAA} where the project can be forked or one can request to become a contributor. This documentation covers the \textit{alpha} release. Updated documentation will be made available with future releases. 
+
+\section{The Neuron class file}
 
 The {\tt Neuron} class file allows one to make both individual and arrays of neural elements whose properties and parameters can be specified. In general, neurons can be described by an equation of the form
 
@@ -82,7 +85,7 @@ Enabling certain properties of neurons (e.g., enabling change-detection) might l
 
 \subsection{id}
 
-Each neural element has an `id' that can be assigned to it in order to label it. This is useful because the Neuron is a handle class, meaning that multiple handles can point to the same Neuron object. Giving a Neuron object a unique `id' can minimize confusion stemming from this. Note: there is nothing preventing multiple neurons from possessing the same id, so one must take care in ensuring an id is a unique identifier. 
+Each neural element has an `id' that can be assigned to it in order to label it. This is useful because the Neuron is a handle class, meaning that multiple handles can point to the same Neuron object. Giving a Neuron object a unique `id' can minimize confusion stemming from this. \textit{Note: there is nothing preventing multiple neurons from possessing the same id, so one must take care in ensuring an id is a unique identifier.}
 
 \subsection{t}
 
@@ -93,6 +96,14 @@ The property `t' defines the current clock time of a given neural element. When 
 The activation state of each neural element is represented by the variable $u$. The property `u' is a vector that represents the time-series of $u$ for each neural element. 
 
 \subsection{v}
+
+The antagonistic state of change-detection neural elements. To make a standard neural element into a change-detection neural element, set its {\tt vCoefficient} property equal to 1. Each neural element with {\tt vCoefficient = 1} is of the form (assuming no additional optional coefficients are not equal to zero):
+
+\bigskip
+\noindent $ \tau \dot{u} = -u + h - v + input $
+
+\noindent $ \tau_v \dot{v} = -v + input $
+
 \subsection{a}
 \subsection{aFr}
 \subsection{fu}
@@ -105,22 +116,58 @@ The property {\tt h} sets the resting level of a neural element.
 
 \subsection{tau}
 
-The property `tau' sets the time constant for the dynamical evolution of a neural element. 
+The property `tau' sets the time constant for the dynamical evolution of a neural element's state variable {\tt u}. 
 
 \subsection{tauV}
+
+The property `tauV' sets the time constant for the dynamical evolution of a change-detection element's antagonistic state variable {\tt v}. Typically, tauV > tau. This parameter is only relevant if vCoefficient $\neq 0$. 
+
 \subsection{tauA}
 \subsection{tauAFr}
 
 \subsection{vCoefficient}
+
+Setting vCoefficient $\neq 0$ turns on the antagonistic change-detection. When it is set to 1, the neural element can be described as 
+
+\bigskip
+\noindent $ \tau \dot{u} = -u + h - v + input $
+
+\noindent $ \tau_v \dot{v} = -v + input $
+
+
 \subsection{aCoefficient}
 \subsection{aFrCoefficient}
 \subsection{noiseCoefficient}
+
+The noiseCoefficient property sets the standard deviation of the normally-distributed mean-zero noise term associated with a noise element. 
+
+\noindent $ \tau \dot{u} = -u + h + input + noise$
+
 \subsection{interaction}
 \subsection{input}
 
-The input property represents all the external inputs that a neuron is receiving. The input array is defined as a $1 \times n$ cell array with $n$ synaptic inputs. Each synaptic input is itself a cell array that contains one or more input values that are to be multiplied. Individual inputs can be scalar, time-series (i.e. 1-D vector), or the handles of neural elements. 
+The input property represents all the external inputs that a neuron is receiving. The input array is defined as a $1 \times n$ cell array with $n$ synaptic inputs. Each synaptic input is itself a cell array that contains one or more entries that are to be multiplied. Individual entries can be scalar values, time-series (i.e. 1-D vector), or the handles of neural elements. 
+
+A typical additive synapse is defined as {\tt \{synapticWeight, neuralElementHandle\}}, so an input array with n additive neural inputs would be structured as
+
+\noindent {\tt \{\{synapticWeight\_1, neuralElementHandle\_1\},...
+
+\noindent  \{synapticWeight\_2, neuralElementHandle\_2\},... 
+
+\noindent... 
+
+\noindent \{synapticWeight\_n, neuralElementHandle\_n\}\}}. 
+
+Because the cell defining a given synapse can have any number of entries, a multiplicative synapse can be constructed as {\tt \{synapticWeight, neuralElementHandle\_1, neuralElementHandle\_2\}} within the input cell array. 
 
 \subsection{changeDetectionBypassInput}
+
+Treated in the same manner as the {\tt input} property except that in change-detection neurons (vCoefficient $\neq 0$) only the equation determining the state {\tt u} receives the input. 
+
+\bigskip
+\noindent $ \tau \dot{u} = -u + h + input +  changeDetectionBypassInput$
+
+\noindent $ \tau_v \dot{v} = -v + input $
 
 \section{Methods}
 
